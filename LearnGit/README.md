@@ -176,7 +176,7 @@ Two ways to get updates from a remote branch:
 
 ---
 
-## 👀 Viewing Remote Changes with Fetch
+## Viewing Remote Changes with Fetch
 
 When you want to update your working directory **using `fetch`**, follow these steps:
 
@@ -221,6 +221,7 @@ When satisfied you can pull and overwrite locally.
 **Tip:**
 
 > “Commit often, with clear messages — your future self will thank you.”
+
 
 
 
