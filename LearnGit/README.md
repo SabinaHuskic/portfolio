@@ -170,13 +170,35 @@ Two ways to get updates from a remote branch:
 * Immediately updates your working directory files.
 
 ### **`git fetch`**
-
-```bash
-git fetch origin main
-```
-
+* You can use a more detailed command: 'git fetch <remote> <branch>'
 * Downloads updates **without merging** them into your current files.
 * Lets you review changes first — useful for collaboration.
+
+---
+
+## 👀 Viewing Remote Changes with Fetch
+
+When you want to update your working directory **using `fetch`**, follow these steps:
+
+1. On your local computer, you have the **`main`** branch.
+   Remotely, you have **`origin/main`**.
+2. Run:
+
+   ```bash
+   git fetch
+   ```
+
+   This updates your local knowledge of the remote repository.
+3. Then check out the remote branch:
+
+   ```bash
+   git checkout origin/main
+   ```
+
+   This lets you explore what’s new **without overwriting** your current local files.
+
+You’ll now see the latest version of the project as it exists remotely, safely separated from your working directory.
+When satisfied you can pull and overwrite locally.
 
 ---
 
@@ -192,12 +214,14 @@ git fetch origin main
 | `git pull`                | Pull and merge changes from remote      |
 | `git fetch`               | Download remote changes without merging |
 | `git remote -v`           | View remote connections                 |
+| `git checkout origin/main` | View remote branch contents without merging |
 
 ---
 
 **Tip:**
 
 > “Commit often, with clear messages — your future self will thank you.”
+
 
 
 
