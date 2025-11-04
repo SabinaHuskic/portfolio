@@ -1,0 +1,1 @@
+Example text for adding 2 files to the staging area and commiting the staging area.
