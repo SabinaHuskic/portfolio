@@ -1,8 +1,3 @@
-Here’s a cleaned up, well-formatted, and readable version of your text in proper **Markdown (`.md`)** format.
-You can copy and paste this directly into your `README.md` file — it will render nicely on GitHub.
-
----
-
 # Learning Git & GitHub
 
 This document summarizes what I’ve learned while exploring **Git** and **GitHub**.
@@ -203,5 +198,6 @@ git fetch origin main
 **Tip:**
 
 > “Commit often, with clear messages — your future self will thank you.”
+
 
 
