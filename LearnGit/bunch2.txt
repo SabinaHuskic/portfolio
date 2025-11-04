@@ -1,0 +1,8 @@
+Example text for adding all your changes to the staging area using 'git add .'
+
+this is if you are a solo developer and not being too carefull. 
+Depending on your workflow this can be good or bad. 
+Sometimes you want to be a little more precise and carefull to be able to roll back changes more individually.
+Now that these files are part of the same stage, if I have to roll this back, I have to roll back both text files instead of just one at a time.
+
+It is good practice to add files as you create them.
