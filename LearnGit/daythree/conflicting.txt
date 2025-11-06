@@ -1,2 +1,5 @@
 this was written on the bug_qa branch.
 Ok on the main branch I have different text
+what is happening?
+I am writing this in the bug_qa branch
+lets add another line.
