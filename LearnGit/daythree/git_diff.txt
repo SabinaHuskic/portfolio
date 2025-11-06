@@ -1,3 +1,4 @@
 ONE line
 TWO line
-THREE line
+new line
+uncommited new THREE line
