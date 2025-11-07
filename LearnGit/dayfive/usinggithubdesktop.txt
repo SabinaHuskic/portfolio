@@ -1,2 +1,3 @@
 I will be using git hub desktop to add, commit and publish everything
 Added changes 
+Just a commit without pushing to GitHub
