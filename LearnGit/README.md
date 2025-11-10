@@ -1,120 +1,112 @@
-# Learning Git & GitHub
+# Learning Git and GitHub
 
-This document summarizes what I’ve learned while exploring **Git** and **GitHub**.
+I took a Udemy course to learn about **Git** and **GitHub**.
 
----
-
-## Getting Started with Git
-
-### **1. Initialize a Repository**
-
-```bash
-git init
-```
-
-* Initializes a new Git repository in your current directory.
-* Run this **once per project** — initializing a repository inside another can cause issues.
-* This command creates a hidden directory called `.git`, which tracks all version history and changes.
+**Udemy Course:** [Master Git and GitHub in 5 Days: Go from Zero to Hero](https://www.udemy.com/course/master-git-and-github-in-5-days-go-from-zero-to-hero/)
 
 ---
 
-### **2. Check Repository Status**
+## Starting with Git
 
-```bash
-git status
-```
+### Basic Commands
 
-* Shows whether you are currently inside a Git repository.
-* Displays which files are **untracked**, **modified**, or **staged** for commit.
+#### `git init`
+
+Initializes a Git repository on your local machine.
+
+* Run this command **once per project**.
+  Initializing a repository inside another repository can cause issues.
+* Creates a hidden directory called `.git`, which manages versioning and tracking.
+
+#### `git status`
+
+Reports whether you are currently inside a Git repository and lists the current state of tracked/untracked files.
 
 ---
 
 ## Creating a Repository
 
-### **Option 1: Locally via Command Line**
+### Locally with the Command Line
 
-1. Create a new directory for your project.
-2. Use `git status` to make sure you’re not already inside another repo.
-3. Initialize it with `git init`.
+1. Create a directory for your project.
+2. Use `git status` to ensure you’re not already inside a Git repository.
+3. Run `git init` to initialize it.
 
----
+### On GitHub
 
-### **Option 2: On GitHub**
+When creating a new repository on GitHub, you can:
 
-When creating a new repository on [GitHub.com](https://github.com):
-
-* You can add a **README.md** file.
-* You can add a **.gitignore** file to tell Git which files **not** to track (e.g., databases, large files, API keys).
-* You can choose a **license** to specify how others can use your code.
+* Add a **README.md** file.
+* Add a **.gitignore** file to specify files Git should not track (e.g., databases or large files).
+* Choose a **license** to define how others may use your code.
 
 ---
 
-## Cloning a Repository
+## Getting a Repository from GitHub to Your Local Machine
 
-Ways to get a repository from GitHub to your local machine:
-
-1. **Download as ZIP** – quick and simple, great for offline use or putting it on a USB.
-2. **Use GitHub Desktop** – graphical interface for managing repositories.
-3. **Use HTTPS and Git Clone** – the most common way:
+1. **Download as ZIP** – simple and fast option if you need to put it on a USB.
+2. **Use GitHub Desktop** – for a graphical interface.
+3. **Use HTTPS via the command line:**
 
 ```bash
 git clone https://github.com/username/repository.git
 ```
 
-This copies the GitHub repository to your local machine.
+This copies the repository from GitHub to your local machine.
 
 ---
 
 ## Creating a Private Repository
 
-The process is the same as creating a public one — simply check the **“Private”** box when setting it up on GitHub.
+The process is the same as creating a public one — simply check the **Private** option when setting up the repository.
 
 ---
 
-## Cloning with Authentication
+## Cloning Process and Authentication
 
-Before cloning private repositories, you need to authenticate with GitHub.
+Before cloning a private repository, you must authenticate using one of the following methods.
 
-### **Option 1: Personal Access Token (PAT)**
+### Option 1: Personal Access Token (PAT)
 
 1. Go to **Settings → Developer Settings → Personal Access Tokens** on GitHub.
-2. Generate a new token and select the **`repo`** scope for full control.
-3. Use it in your clone command:
+2. Generate a PAT and select the **`repo`** scope for full control of private repositories.
+3. Use the token when cloning:
 
 ```bash
 git clone https://<token>@github.com/username/repository.git
 ```
 
-### **Option 2: GitHub Desktop**
+### Option 2: GitHub Desktop
 
-* Go to **File → Clone Repository**.
-* Choose your repository and local save location.
-* GitHub Desktop handles authentication for you.
+* Open **File → Clone Repository**.
+* Choose your repository and local directory.
+* GitHub Desktop will handle authentication for you.
 
 ---
 
-## Git Workflow & Usage
+## Git Usage and Workflow
 
-Each time you make changes, you must **commit** them so Git can track your progress.
+Every change made to a file is tracked through **commits**.
+Commits allow you to revisit earlier versions of your project.
 
-### **Basic Workflow**
+### Basic Workflow
 
 1. **Stage changes**
 
    ```bash
-   git add filename.py      # Add specific file
-   git add .                # Add everything in the directory
+   git add filename.py    # Add a specific file
+   git add .              # Add all files
    ```
 
-   This moves your changes to the **staging area** — not yet committed.
+   Moves changes to the staging area — not yet committed.
 
 2. **Commit changes**
 
    ```bash
-   git commit -m "Add feature X"
+   git commit -m "Meaningful message"
    ```
 
-   Commits changes to the local repository with a meaningful message.
+   Commits staged changes to the local repository.
 
 3. **Push to GitHub**
 
@@ -122,107 +114,277 @@ Each time you make changes, you must **commit** them so Git can track your progr
    git push
    ```
 
-   Uploads your local commits to the remote repository on GitHub.
+   Uploads your local commits to the remote repository.
+
+4. **Pull updates**
+
+   ```bash
+   git pull
+   ```
+
+   Retrieves and merges updates from the remote repository into your local branch.
 
 ---
 
-## Working with Remote Branches
+## Remote Branches
 
-### **Check Remotes**
+The `git remote` command lets you create, view, and delete remote connections (like bookmarks to other repositories).
+
+### Common Commands
 
 ```bash
-git remote -v
+git remote             # List remotes
+git remote -v          # Show remotes with URLs
+git remote add <name> <url>   # Add a remote
+git remote rm <name>          # Remove a remote
+git remote rename <old> <new> # Rename a remote
 ```
 
-Shows the remote repository URLs connected to your local project.
-
-### **Add a Remote Repository**
-
-When pushing an existing local repository to GitHub, use:
+After creating a local repository, push it to GitHub:
 
 ```bash
 git remote add origin https://github.com/username/repository.git
-```
-
-* `origin` is the conventional name for the main remote.
-* Push your code to GitHub:
-
-```bash
 git push -u origin main
 ```
 
-### **Manage Remotes**
+---
+
+## Fetch and Pull
+
+Two main commands to get remote updates:
+
+### `git pull`
+
+* Downloads and merges changes directly into your current branch.
+* Updates your working directory immediately.
+
+### `git fetch`
 
 ```bash
-git remote rename oldname newname     # Rename a remote
-git remote remove name                # Remove a remote connection
+git fetch origin main
+```
+
+* Downloads updates **without merging** them.
+* Lets you review remote changes before applying them.
+* Useful when collaborating and avoiding conflicts.
+
+#### Viewing Fetched Changes
+
+To preview remote updates without overwriting your files:
+
+```bash
+git fetch
+git checkout origin/main
+```
+
+This allows you to explore remote changes safely.
+
+---
+
+## Working with Others
+
+### Branches
+
+Branches represent independent lines of development.
+They allow multiple developers (or you) to work on features simultaneously.
+
+#### Key Points
+
+* Each commit links to a parent commit, forming a branch history.
+* Branches don’t change the repository; they’re pointers to commits.
+* Use branches to organize features and prevent breaking the main branch.
+
+#### Common Commands
+
+```bash
+git branch <branch_name>   # Create a new branch
+git branch                 # List branches
+git switch <branch_name>   # Switch branches
+```
+
+#### Renaming a Branch
+
+```bash
+git switch branch_to_rename
+git branch -m new_name
+```
+
+#### Deleting a Branch
+
+```bash
+git branch -d branch_name   # Delete merged branch
+git branch -D branch_name   # Force delete unmerged branch
 ```
 
 ---
 
-## Fetch vs. Pull
+## Merging Branches
 
-Two ways to get updates from a remote branch:
-
-### **`git pull`**
-
-* Downloads **and merges** changes directly into your current branch.
-* Immediately updates your working directory files.
-
-### **`git fetch`**
-* You can use a more detailed command: 'git fetch <remote> <branch>'
-* Downloads updates **without merging** them into your current files.
-* Lets you review changes first — useful for collaboration.
+* **Fast-forward merge:** When no new commits were made on the main branch since the feature branch was created.
+* **Regular merge:** Combines changes from both branches.
+* **Merge conflicts:** Occur when both branches edit the same lines. Conflicts must be resolved manually before completing the merge.
 
 ---
 
-## Viewing Remote Changes with Fetch
+## `git diff`
 
-When you want to update your working directory **using `fetch`**, follow these steps:
+Displays differences between versions.
 
-1. On your local computer, you have the **`main`** branch.
-   Remotely, you have **`origin/main`**.
-2. Run:
+```bash
+git diff                  # Compare working directory with last commit
+git diff branch1 branch2  # Compare two branches
+```
 
-   ```bash
-   git fetch
-   ```
+### Diff Output Breakdown
 
-   This updates your local knowledge of the remote repository.
-3. Then check out the remote branch:
-
-   ```bash
-   git checkout origin/main
-   ```
-
-   This lets you explore what’s new **without overwriting** your current local files.
-
-You’ll now see the latest version of the project as it exists remotely, safely separated from your working directory.
-When satisfied you can pull and overwrite locally.
+1. File names being compared
+2. Metadata
+3. Legend (`-` for file A, `+` for file B)
+4. Diff chunks showing changed lines
 
 ---
 
-## Summary
+## Undoing Changes
 
-| Command                   | Description                             |
-| ------------------------- | --------------------------------------- |
-| `git init`                | Initialize a new repository             |
-| `git status`              | Check current repo status               |
-| `git add .`               | Stage all changes                       |
-| `git commit -m "message"` | Commit staged changes                   |
-| `git push`                | Push commits to GitHub                  |
-| `git pull`                | Pull and merge changes from remote      |
-| `git fetch`               | Download remote changes without merging |
-| `git remote -v`           | View remote connections                 |
-| `git checkout origin/main` | View remote branch contents without merging |
+### `git checkout`
+
+Switch between commits, branches, or files.
+
+```bash
+git log --oneline     # View short commit history
+git checkout <hash>   # Move to a specific commit
+```
+
+### `git restore`
+
+Restores a file to its previous state.
+
+```bash
+git restore file.txt
+git restore --source HEAD~2 file.txt   # Restore file from two commits ago
+```
+
+### `git reset`
+
+Removes commits and resets the branch.
+
+```bash
+git reset <hash>          # Remove commits (keep files)
+git reset <hash> --hard   # Remove commits and changes
+```
+
+### `git revert`
+
+Creates a new commit that undoes previous changes (safer than reset).
+
+```bash
+git revert <hash>
+```
+
+> **Tip:** Always confirm whether to use `restore`, `revert`, or `reset` before running them.
+
+---
+
+## Git and GitHub in Practice
+
+### Git Stash
+
+Temporarily saves uncommitted changes so you can switch branches safely.
+
+```bash
+git stash        # Save current changes
+git stash pop    # Reapply and remove stashed changes
+git stash apply  # Reapply without removing from stash
+```
+
+Useful when switching branches mid-edit or testing alternate code paths.
+
+---
+
+## .gitignore
+
+Used to exclude files or directories from being tracked by Git.
+
+Examples:
+
+```
+mypasswords.txt    # Ignore a specific file
+directory_name/    # Ignore all files in a directory
+*.sql              # Ignore all SQL files
+```
+
+---
+
+## Common Workflow Patterns
+
+### Single-Branch Workflow
+
+* All work is done on `main`.
+* Simple but prone to breaking production code.
+* Best for small or experimental projects.
+
+### Branch-Based Development
+
+* Work is done on feature branches.
+* The `main` branch remains stable and acts as the source of truth.
+* Merges into `main` typically require review or tests.
+
+---
+
+## GitHub Repository Tour
+
+Inside a GitHub repository, you can:
+
+* View all branches and commits.
+* Open and manage **Issues** for bug tracking or feature requests.
+* Use **Actions** for automation and testing.
+* Create a **Wiki** for documentation.
+* Manage collaborator permissions in **Settings**.
+
+---
+
+## Pull Requests
+
+Pull requests (PRs) are a GitHub feature for managing code review and collaboration.
+
+* A collaborator can push their branch to your repository and open a PR.
+* The repository owner can review, request changes, and merge it into `main`.
+* Provides version control and discussion around each proposed change.
+
+---
+
+## Forking
+
+Forking creates a copy of someone else’s repository under your GitHub account.
+
+* You can freely modify your fork and submit changes via a pull request.
+* To stay updated with the original repository, add a remote called **upstream**:
+
+```bash
+git remote add upstream https://github.com/original/repo.git
+git fetch upstream
+git merge upstream/main
+```
+
+---
+
+## GitHub Actions
+
+GitHub Actions is a **CI/CD (Continuous Integration / Continuous Deployment)** platform for automating build, test, and deployment processes.
+
+* Workflows are defined in **YAML** files.
+* Common uses include:
+
+  * Running automated tests on pull requests
+  * Deploying merged code
+  * Automating tasks such as comments or notifications
 
 ---
 
 **Tip:**
 
-> “Commit often, with clear messages — your future self will thank you.”
-
-
-
-
+> Commit often with clear messages.
+> Branch before experimenting.
+> Review before merging.
+> And never panic — Git has a way to undo almost anything.
 
