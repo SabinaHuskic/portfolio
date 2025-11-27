@@ -1,7 +1,8 @@
 # Learning Cypress
 
 I took a Udemy course to learn about **Cypress**.
-You can find all the scripts in cypress/e2e/ folder!
+
+**You can find all the scripts in cypress/e2e/ folder!**
 
 **Udemy Course:** [Cypress: Web Automation Testing from Zero to Hero](https://www.udemy.com/course/cypress-web-automation-testing-from-zero-to-hero/)
 
