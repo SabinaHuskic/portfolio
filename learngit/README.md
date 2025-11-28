@@ -1,4 +1,4 @@
-# CheetSheet
+# Cheat Sheet
 | Command | Description |
 |--------|-------------|
 | git init | Initializes a new Git repository in the current directory. |
