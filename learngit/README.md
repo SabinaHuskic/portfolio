@@ -1,3 +1,34 @@
+# CheetSheet
+| Command | Description |
+|--------|-------------|
+| git init | Initializes a new Git repository in the current directory. |
+| git status | Shows the state of the working directory and staging area. |
+| git clone | Copies an existing remote repository to your local machine. |
+| git add | Stages changes for the next commit. |
+| git commit -m "Message" | Creates a commit with a message describing the changes. |
+| git push | Uploads local commits to a remote repository. |
+| git pull | Fetches and merges changes from a remote repository into the current branch. |
+| git remote | Shows or manages remote repository connections. |
+| git remote add | Adds a new remote repository connection. |
+| git remote rm | Removes a remote repository connection. |
+| git remote rename | Renames an existing remote. |
+| git fetch | Retrieves remote changes without merging them. |
+| git checkout | Switches to another branch, commit or file version. |
+| git branch | Lists, creates, or manages branches. |
+| git switch | Switches to another branch (more user-friendly than checkout). |
+| git branch -m new_name | Renames the currently checked-out branch. |
+| git branch -d | Deletes a branch if it has been merged safely. |
+| git branch -D | Force deletes a branch even if not merged. |
+| git diff | Shows differences between commits, branches, or working files. |
+| git log | Displays commit history in detail. |
+| git log --oneline | Shows commit history in single-line format. |
+| git checkout <hash> | Moves HEAD to a specific commit (detached state). |
+| git restore | Restores changes in files to a previous commit state. |
+| git reset | Removes commits and optionally changes in files. |
+| git revert | Creates a new commit that undoes changes from a previous commit. |
+| git stash | Temporarily stores uncommitted changes for later use. |
+
+
 # Learning Git and GitHub
 
 I took a Udemy course to learn about **Git** and **GitHub**.
