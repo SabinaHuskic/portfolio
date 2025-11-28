@@ -130,7 +130,7 @@ it('Cypress command Chains', () => {
         
 })
 
-it.only('Reusing locators', () => {
+it('Reusing locators', () => {
 
     // THIS SEEMS LIKE IT WORKS BUT IT DOES NOT!!! DO NOT DO IT LIKE THIS!!!!
     /*
@@ -165,4 +165,105 @@ it.only('Reusing locators', () => {
 
     cy.get('@inputEmail2')
 
+})
+
+it('Extracting Values', () => {
+
+    // 1. using a JQuery method
+    cy.get('[for="exampleInputEmail1"]').then( label => {
+        const emailLabel = label.text()
+        console.log(emailLabel)
+    })
+
+    
+    // 2. Using invoke command
+    cy.get('[for="exampleInputEmail1"]').invoke('text').then(emailLabel => { // Method invoke returns the actual value
+        console.log(emailLabel)
+    }) 
+    cy.get('[for="exampleInputEmail1"]').invoke('text').as('emailLable')
+
+    
+    // 3. Invoke attribute value
+    cy.get('#exampleInputEmail1').invoke('attr', 'class').then(classValue => {
+        console.log(classValue)
+    })
+    // You can do this with any attribute
+    cy.get('#exampleInputEmail1').invoke('attr', 'placeholder').then(classValue => {
+        console.log(classValue)
+    })
+    
+
+
+    // 4. Invoke input field value
+    cy.get('#exampleInputEmail1').type('Hello@test.com') // Write into the input field
+    cy.get('#exampleInputEmail1').invoke('prop', 'value').then ( value => {
+        // How to know this is a propertie named value: go to the inspector, under elements go to the right window and find properties
+        // You can invoke any other propertie as well but highly unlikely that you will need it.
+        console.log(value)
+    })
+    
+    // TIP: If all you need is to make an assertion you don't need to invoke the text before making the insertion. Cypress assertions have everything built in to make a validation.
+    // You use this when you need to get the value, process it somehoce maybe concaconate with other value or add to some other project or object, and then do something inside of your script.
+    // Using assertion immediatly looks like this:
+    cy.get('[for="exampleInputEmail1"]').should('contain', 'Email address')
+    // the same for other properties like class value
+    cy.get('#exampleInputEmail1').should('have.attr', 'class', 'input-full-width size-medium status-basic shape-rectangle nb-transition cdk-focused cdk-mouse-focused')
+    // Class value changed after cypress typed Hello@test.com
+    
+})
+
+it('Assertions', () => {
+    // PARTIAL ASSERTION
+    cy.get('[for="exampleInputEmail1"]').should('contain', 'Email address')
+
+    cy.get('[for="exampleInputEmail1"]').then( label => {
+        expect(label).to.contain('Email address')
+    })
+    // The above 2 examples do the same it is just different syntax
+
+    // EXACT MATCH
+    cy.get('[for="exampleInputEmail1"]').should('have.text', 'Email address')
+
+    cy.get('[for="exampleInputEmail1"]').then( label => {
+        expect(label).to.have.text('Email address')
+    })
+
+    cy.get('[for="exampleInputEmail1"]').invoke('text').then(emailLabel => { // Method invoke returns the actual value
+        expect(emailLabel).to.equal('Email address')
+        cy.wrap(emailLabel).should('equal', 'Email address')
+    }) 
+
+    // LIST OF ALL AVAILABLE ASSERTIONS!
+    // https://docs.cypress.io/app/references/assertions
+
+
+    // Cypress will try to get the value before the timeout runs out (default 4 sec)
+
+    // Cypress guide will tell you some tricks and best practices for how and when to use assertions
+    // https://docs.cypress.io/app/core-concepts/introduction-to-cypress#Assertions
+
+})
+
+it.only('Timeouts', () => {
+    cy.contains('Modal & Overlays').click()
+    cy.contains('Dialog').click()
+
+    cy.contains('Open with delay 3 seconds').click()
+    cy.get('nb-dialog-container nb-card-header').should('have.text', 'Friendly reminder')
+    cy.contains('OK').click()
+
+    // Because Cypress has the default timeout of 4 seconds the next assertion does not work
+    /*
+    cy.contains('Open with delay 10 seconds').click()
+    cy.get('nb-dialog-container nb-card-header').should('have.text', 'Friendly reminder')
+    */
+    // List of timeouts: https://docs.cypress.io/app/references/configuration#Timeouts
+    
+    // OPTION 1: you can configure the timout in the cypress.config.js: defaultCommandTimeout: 11000
+
+    // OPTION 2: 
+    cy.contains('Open with delay 10 seconds').click()
+    cy.get('nb-dialog-container nb-card-header', {timeout: 11000}).should('have.text', 'Friendly reminder')
+
+    // Be careful not to add a timeout to the assertion! It needs to be added to the action method.
 })
